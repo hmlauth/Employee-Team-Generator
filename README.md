@@ -38,18 +38,25 @@ node app.js
 
 ### Master
     * "Basic Functions" - Each function prompts questions, instantiates employee, then pushes new employee to team array.
-    * Final team (array) passed to displayHTML()
     * Minimal promise use - The only promises used are those provided by Inquirer.
+    * Classes require 4 arguments
+    * Final team (array) passed to displayHTML()
 
 
 ### Version-2
     * Functions adapted with promises & async/await
     * Functions remain separate per employee type
+    * Classes require 4 arguments
+    * Final team (array) passed to displayHTML()
 
 ### Version-3
-    * Consolidated functions
-    * Classes modified to accept object when instantiated
+    * Functions still use promises & async/await
+    * Consolidated previously separate functions into one
+    * Classes modified to accept 1 argument (object)
+    * Final team (array) passed to displayHTML()
 
 ### Version-4
+    * Promise returns removed
     * Modified data structure of employeeTypeQuestions 
-    * Classes can accept either an object or arguments when instantiated
+    * Classes can accept either an object or 4 arguments
+    * Final team (array) passed to displayHTML()
