@@ -48,8 +48,8 @@ node app.js
 
 ### Version-3
     * Consolidated functions
-    * Modified data structure of employeeTypeQuestions 
     * Classes modified to accept object when instantiated
 
 ### Version-4
+    * Modified data structure of employeeTypeQuestions 
     * Classes can accept either an object or arguments when instantiated
