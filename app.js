@@ -6,94 +6,44 @@ const displayHTML = require('./utils/displayHTML');
 
 // Classes
 const Manager = require('./lib/Manager');
-const Engineer = require('./lib/Engineer');
-const Intern = require('./lib/Intern');
 
 // Questions
 const {
-    employeeTypeQuestions,
-    employeeQuestions,
     managerQuestions,
-    engineerQuestions,
-    internQuestions
+    employeeTypeQuestions
 } = require('./lib/questions');
 
 
-async function getSingleEmployee(employeeType) {
+async function createTeam() {
+    return new Promise(async (resolve, reject) => {
+        let employees = [];
+        let employee = null;
 
-    let Klass;
-    let questions;
+        employees.push(employee = new Manager(await getManager()));
 
-    switch (employeeType) {
-        case 'Engineer':
-            Klass = Engineer;
-            questions = engineerQuestions
-            break;
-        case 'Intern':
-            Klass = Intern;
-            questions = internQuestions
-            break;
-        case 'Manager':
-            Klass = Manager;
-            questions = managerQuestions
-            break;
-    }
-
-    try {
-
-        let data = await inquirer.prompt(employeeQuestions.concat(questions));
-        return new Klass(data)
-
-    } catch (err) {
-        throw err
-    }
+        while (employee) {
+            employee = await getEmployee();
+            if (employee) {
+                employees.push(employee);
+            }
+        }
+        resolve(employees);
+    })
 }
 
-// Returns an array of all team members
-async function createTeam() {
+async function getManager() {
+    return await inquirer.prompt(managerQuestions)
+};
 
-    const team = [];
+async function getEmployee() {
+    let type = await inquirer.prompt(employeeTypeQuestions);
+    // type is 
+    if (!type.role) {
+        return null;
+    }
 
-    return new Promise(async (resolve, reject) => {
-        try {
-
-            // Get manager and push to team array
-            let manager = await getSingleEmployee("Manager");
-            team.push(manager);
-
-            // Get next employee
-            await getEmployee();
-
-            async function getEmployee() {
-                try {
-                    inquirer
-                        .prompt(employeeTypeQuestions)
-                        .then(async ({ employeeType }) => {
-                            if (employeeType === "Engineer") {
-                                return { engineer } = await getSingleEmployee(employeeType);
-                            } else if (employeeType === "Intern") {
-                                return { intern } = await getSingleEmployee(employeeType);
-                            } else {
-                                employee = null
-                            }
-                        }).then(employee => {
-                            if (employee) {
-                                team.push(employee);
-                                getEmployee();
-                            } else {
-                                resolve(team)
-                            }
-                        })
-                } catch (err) {
-                    reject(err)
-                }
-            }
-
-
-        } catch (err) {
-            console.log(err)
-        }
-    })
+    let data = await inquirer.prompt(type.role.questions);
+    return new type.role.class(data);
 }
 
 async function test() {
