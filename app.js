@@ -15,21 +15,19 @@ const {
 
 
 async function createTeam() {
-    return new Promise(async (resolve, reject) => {
-        let employees = [];
-        let employee = null;
-
-        employees.push(employee = new Manager(await getManager()));
-
-        while (employee) {
-            employee = await getEmployee();
-            if (employee) {
-                employees.push(employee);
-            }
-        }
-        resolve(employees);
-    })
-}
+    let employees = [];
+    let employee = null;
+  
+    employees.push(employee = new Manager(await getManager()));
+  
+    while (employee) {
+      employee = await getEmployee();
+      if (employee) {
+        employees.push(employee);
+      }
+    }
+    return employees;
+  }
 
 async function getManager() {
     return await inquirer.prompt(managerQuestions)
