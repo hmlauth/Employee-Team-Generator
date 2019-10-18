@@ -34,12 +34,17 @@ node app.js
 
 ## Branches
 
-### Master
+### Master 
+    * Blank template to start from should you want to practice!
+    
+### Version-1
     * "Basic Functions" - Each function prompts questions, instantiates employee, then pushes new employee to team array.
     * Minimal promise use - The only promises used are those provided by Inquirer.
     * Classes require 4 arguments
     * Resulting team (array) passed to displayHTML(array)
 
+### Version-1-A
+    * Solution without classes
 
 ### Version-2
     * Functions adapted with promises & async/await
