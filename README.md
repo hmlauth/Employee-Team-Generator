@@ -14,10 +14,7 @@ Primary focus of these branches relate to `app.js` logic. HTML remains the same 
 ```
 npm i
 ```
-3. Run `git branch`. 
-* An asterisk (<strong>*</strong>) will identify the branch you're currently on:
-<img src="./assets/git-branch-list.png" alt="git branch list in terminal" height="100px">
-<br>
+3. Run `git branch -a`.
 
 *  To view code on different branch:
 ```
